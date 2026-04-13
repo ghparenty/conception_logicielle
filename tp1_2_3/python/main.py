@@ -34,7 +34,7 @@ if __name__ == "__main__":
     except ValueError as e:
         print(f"Modification refusee : {e}")
 
-    # TP3 : Polymorphisme - liste de Personne mixte
+    # TP3 : Polymorphisme - liste de Personne mixte,
     print("\nTP3 : Polymorphisme")
     personnes = [etudiant1, etudiant2, enseignant1, enseignant2]
 
