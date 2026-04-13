@@ -5,7 +5,7 @@ class Etudiant(Personne):
     def __init__(self, nom, age, numero, moyenne):
         super().__init__(nom, age)
         self.__numero = numero
-        self.__moyenne = moyenne
+        self.moyenne = moyenne
         self.__cours = []
 
     @property
@@ -15,6 +15,12 @@ class Etudiant(Personne):
     @property
     def moyenne(self):
         return self.__moyenne
+
+    @moyenne.setter
+    def moyenne(self, value):
+        if value < 0 or value > 20:
+            raise ValueError("La moyenne doit être comprise entre 0 et 20")
+        self.__moyenne = value
 
     def ajouter_cours(self, cours):
         self.__cours.append(cours)

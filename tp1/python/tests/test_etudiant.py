@@ -59,3 +59,34 @@ def test_afficher_details_contient_nom(etudiant, capsys):
     assert "Alice" in output
     assert "E001" in output
     assert "15.5" in output
+
+
+# TP2 : Validation de la moyenne
+
+def test_moyenne_negative_leve_erreur():
+    with pytest.raises(ValueError):
+        Etudiant("Alice", 20, "E001", -1)
+
+
+def test_moyenne_superieure_20_leve_erreur():
+    with pytest.raises(ValueError):
+        Etudiant("Alice", 20, "E001", 25)
+
+
+def test_moyenne_limites_valides():
+    e1 = Etudiant("Alice", 20, "E001", 0)
+    assert e1.moyenne == 0
+    e2 = Etudiant("Bob", 22, "E002", 20)
+    assert e2.moyenne == 20
+
+
+def test_modifier_moyenne_valide():
+    e = Etudiant("Alice", 20, "E001", 15.0)
+    e.moyenne = 18.0
+    assert e.moyenne == 18.0
+
+
+def test_modifier_moyenne_invalide():
+    e = Etudiant("Alice", 20, "E001", 15.0)
+    with pytest.raises(ValueError):
+        e.moyenne = 25
