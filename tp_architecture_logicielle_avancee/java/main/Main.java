@@ -3,20 +3,18 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("=========================================");
         System.out.println("  TP Architecture Logicielle Avancee");
         System.out.println("  Systeme de Gestion Academique");
-        System.out.println("=========================================\n");
 
         // --- 1. SINGLETON : ScolariteManager ---
-        System.out.println("--- [1] SINGLETON : ScolariteManager ---");
+        System.out.println("[1] SINGLETON : ScolariteManager");
         ScolariteManager manager = ScolariteManager.getInstance();
         ScolariteManager manager2 = ScolariteManager.getInstance();
         System.out.println("Meme instance ? " + (manager == manager2));
         System.out.println();
 
         // --- 2. FACTORY METHOD : PersonneFactory ---
-        System.out.println("--- [2] FACTORY METHOD : PersonneFactory ---");
+        System.out.println("[2] FACTORY METHOD : PersonneFactory ");
         Etudiant alice = (Etudiant) PersonneFactory.creerPersonne(
                 PersonneFactory.TypePersonne.ETUDIANT, "Alice", 20, "E001");
         Etudiant bob = PersonneFactory.creerEtudiant("Bob", 22, "E002");
@@ -28,7 +26,7 @@ public class Main {
         System.out.println();
 
         // --- 4. ADAPTER : CoursAdapter ---
-        System.out.println("--- [4] ADAPTER : CoursLegacy -> Cours ---");
+        System.out.println("[4] ADAPTER : CoursLegacy -> Cours ");
         CoursLegacy legacy = new CoursLegacy();
         CoursAdapter adapter = new CoursAdapter(legacy);
         List<Cours> coursConvertis = adapter.convertirTous();
@@ -42,7 +40,7 @@ public class Main {
         System.out.println();
 
         // --- 6. OBSERVER : notification ajout de note ---
-        System.out.println("--- [6] OBSERVER : notification sur ajout de note ---");
+        System.out.println("[6] OBSERVER : notification sur ajout de note");
         manager.ajouterEtudiant(alice);
         manager.ajouterEtudiant(bob);
         manager.ajouterEtudiant(charlie);
@@ -55,7 +53,7 @@ public class Main {
         System.out.println();
 
         // --- 5. STRATEGY : mention ---
-        System.out.println("--- [5a] STRATEGY : calcul de mention ---");
+        System.out.println("[5a] STRATEGY : calcul de mention ");
         System.out.println("Alice (standard) : " + alice.getMoyenne() + " -> " + alice.getMention());
         alice.setStrategieMention(new MentionStricte());
         System.out.println("Alice (stricte)  : " + alice.getMoyenne() + " -> " + alice.getMention());
@@ -63,7 +61,7 @@ public class Main {
         System.out.println();
 
         // --- 5. STRATEGY : tri ---
-        System.out.println("--- [5b] STRATEGY : tri des etudiants ---");
+        System.out.println("[5b] STRATEGY : tri des etudiants");
         System.out.println("Tri par moyenne (decroissant) :");
         manager.trierEtudiants(new TriParMoyenne());
         for (Etudiant e : manager.getEtudiants()) {
@@ -77,7 +75,7 @@ public class Main {
         System.out.println();
 
         // --- 3. DECORATOR : EtudiantBoursier / EtudiantDelegue ---
-        System.out.println("--- [3] DECORATOR : EtudiantBoursier / EtudiantDelegue ---");
+        System.out.println("[3] DECORATOR : EtudiantBoursier / EtudiantDelegue");
         IEtudiant aliceBoursiere = new EtudiantBoursier(alice, 4500.0);
         IEtudiant bobDelegue = new EtudiantDelegue(bob, "L3 Info");
         IEtudiant charlieBoursierDelegue = new EtudiantDelegue(
@@ -93,7 +91,7 @@ public class Main {
         System.out.println();
 
         // --- RECAP GLOBAL ---
-        System.out.println("--- RECAPITULATIF GLOBAL ---");
+        System.out.println("RECAPITULATIF GLOBAL");
         manager.afficherTous();
     }
 }
